@@ -31,5 +31,36 @@ window.MCS_CONFIG = {
   txCsoRegistration: "",
 
   // "Is your goal a home?" band links here. Empty = that band is hidden.
-  realEstateUrl: "https://jasonaguirregroup.company"
+  realEstateUrl: "https://jasonaguirregroup.company",
+
+  // ===================================================================
+  // CLIENT AGREEMENT (agreement.html)
+  // Every field marked REQUIRED must be filled in, along with
+  // txCsoRegistration above and a form destination (webhookUrl or Supabase),
+  // or the agreement page will not let anyone sign.
+  // Preview it anytime at /agreement.html?preview=1 (signing disabled).
+  // ===================================================================
+  agreement: {
+    version: "1.0 (2026-10-07)",
+    legalEntity: "",                    // REQUIRED — exact legal name, e.g. "My Crystal Score LLC"
+    businessAddress: "",                // REQUIRED — principal place of business: street, city, TX ZIP
+    registeredAgentName: "",            // REQUIRED — Texas agent for service of process
+    registeredAgentAddress: "",         // REQUIRED — agent's Texas street address
+    companySigner: "Jason Aguirre",     // who signs for the company
+    companySignerTitle: "",             // e.g. "Propietario / Owner"
+    surety: {
+      type: "bond",                     // "bond" (surety bond) or "account" (surety account)
+      company: "",                      // REQUIRED if bond — surety company name
+      companyAddress: "",               // REQUIRED if bond — surety company address
+      bondNumber: "",                   // REQUIRED if bond
+      depository: "",                   // REQUIRED if account — bank name
+      depositoryAddress: "",            // REQUIRED if account
+      trustee: "",                      // REQUIRED if account
+      accountNumber: ""                 // REQUIRED if account
+    },
+    sessionMinutes: "60",               // approximate length of each session
+    programDays: "90",                  // all services completed within this many days of signing (Texas max 180)
+    invoiceDueDays: "7"                 // invoice due this many days after each session
+  },
+  supabaseAgreementsTable: "mcs_agreements"
 };

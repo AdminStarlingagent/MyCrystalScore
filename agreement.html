@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="es" data-lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tu acuerdo de servicios | MyCrystalScore</title>
+  <meta name="mcs-title-es" content="Tu acuerdo de servicios | MyCrystalScore">
+  <meta name="mcs-title-en" content="Your service agreement | MyCrystalScore">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#1D1838">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="assets/js/config.js"></script>
+  <script>
+    (function () {
+      try {
+        var p = new URLSearchParams(location.search).get('lang');
+        var l = p || localStorage.getItem('mcs-lang') || (window.MCS_CONFIG && MCS_CONFIG.defaultLang) || 'es';
+        if (p) localStorage.setItem('mcs-lang', p);
+        l = l === 'en' ? 'en' : 'es';
+        document.documentElement.setAttribute('data-lang', l);
+        document.documentElement.lang = l;
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main"><span lang="es">Saltar al contenido</span><span lang="en">Skip to content</span></a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/img/logo.svg" alt="" width="28" height="32">
+        <span>MyCrystalScore</span>
+      </a>
+      <div class="header-actions" style="margin-left:auto">
+        <button class="lang-toggle" type="button" data-lang-toggle data-aria-es="Ver el sitio en inglés" data-aria-en="Ver el sitio en español">
+          <span lang="es">EN</span><span lang="en">ES</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="wrap agreement-main">
+    <div class="page-head">
+      <h1><span lang="es">Tu acuerdo de servicios</span><span lang="en">Your service agreement</span></h1>
+      <p class="section-lede">
+        <span lang="es">Léelo y fírmalo aquí en 5 pasos. Hoy no pagas nada: cada sesión se factura después de recibirla.</span>
+        <span lang="en">Read and sign it here in 5 steps. You pay nothing today: each session is invoiced after you receive it.</span>
+      </p>
+    </div>
+
+    <div id="agreement-app">
+      <div class="preview-banner" data-preview-banner hidden>
+        <strong><span lang="es">Vista previa.</span><span lang="en">Preview.</span></strong>
+        <span lang="es">Puedes recorrer todos los pasos, pero no se puede firmar en este modo.</span>
+        <span lang="en">You can go through every step, but signing is disabled in this mode.</span>
+        <span data-missing-preview-wrap><br><span lang="es">Falta configurar en config.js:</span><span lang="en">Missing in config.js:</span> <code data-missing-preview></code></span>
+      </div>
+
+      <div class="step-card" data-unavailable hidden>
+        <h2><span lang="es">El acuerdo aún no está disponible</span><span lang="en">The agreement isn't available yet</span></h2>
+        <p data-contact><span lang="es">Llámanos y te ayudamos:</span><span lang="en">Call us and we'll help:</span> <a data-phone href="#"></a></p>
+        <details class="admin-note">
+          <summary><span lang="es">Para el administrador</span><span lang="en">For the site admin</span></summary>
+          <p><span lang="es">Completa estos datos en assets/js/config.js:</span><span lang="en">Fill in these settings in assets/js/config.js:</span> <code data-missing-list></code></p>
+          <p><a href="agreement.html?preview=1"><span lang="es">Ver vista previa</span><span lang="en">See preview</span></a></p>
+        </details>
+      </div>
+
+      <div data-flow hidden>
+        <ol class="stepper" data-stepper>
+          <li><span lang="es">Tus datos</span><span lang="en">Your info</span></li>
+          <li><span lang="es">Firma electrónica</span><span lang="en">E-signature</span></li>
+          <li><span lang="es">Derechos federales</span><span lang="en">Federal rights</span></li>
+          <li><span lang="es">Divulgación de Texas</span><span lang="en">Texas disclosure</span></li>
+          <li><span lang="es">Contrato</span><span lang="en">Contract</span></li>
+        </ol>
+
+        <form id="agreement-form" novalidate>
+          <!-- Step 1 -->
+          <section class="step-card" data-step="1">
+            <h2><span lang="es">Tus datos</span><span lang="en">Your info</span></h2>
+            <div class="field">
+              <label for="ag-name"><span lang="es">Nombre legal completo</span><span lang="en">Full legal name</span></label>
+              <input id="ag-name" type="text" autocomplete="name" required>
+              <p class="field-error" hidden></p>
+            </div>
+            <div class="row-2">
+              <div class="field">
+                <label for="ag-email"><span lang="es">Correo electrónico</span><span lang="en">Email</span></label>
+                <input id="ag-email" type="email" inputmode="email" autocomplete="email" required>
+                <p class="field-error" hidden></p>
+              </div>
+              <div class="field">
+                <label for="ag-phone"><span lang="es">Teléfono celular</span><span lang="en">Mobile phone</span></label>
+                <input id="ag-phone" type="tel" inputmode="tel" autocomplete="tel-national" required>
+                <p class="field-error" hidden></p>
+              </div>
+            </div>
+            <div class="field">
+              <label for="ag-address"><span lang="es">Dirección (calle, ciudad, estado, código postal)</span><span lang="en">Address (street, city, state, ZIP)</span></label>
+              <input id="ag-address" type="text" autocomplete="street-address" required>
+              <p class="field-error" hidden></p>
+            </div>
+            <div class="field" data-plan-field>
+              <label for="ag-plan"><span lang="es">Programa</span><span lang="en">Program</span></label>
+              <select id="ag-plan">
+                <option value="individual" data-es="Programa individual" data-en="Individual program">Programa individual</option>
+                <option value="pareja" data-es="Pareja" data-en="Couples">Pareja</option>
+              </select>
+            </div>
+            <div class="field" data-coclient hidden>
+              <label for="ag-coclient"><span lang="es">Nombre completo de tu pareja (firma su propio acuerdo)</span><span lang="en">Your partner's full name (signs their own agreement)</span></label>
+              <input id="ag-coclient" type="text">
+              <p class="field-error" hidden></p>
+            </div>
+            <p class="form-note"><span lang="es">Este acuerdo nunca te pide tu número de Seguro Social ni tu ITIN.</span><span lang="en">This agreement never asks for your Social Security number or ITIN.</span></p>
+            <div class="step-actions"><span></span><button class="btn btn-primary" type="button" data-next><span lang="es">Continuar</span><span lang="en">Continue</span></button></div>
+          </section>
+
+          <!-- Step 2 -->
+          <section class="step-card" data-step="2" hidden>
+            <h2><span lang="es">Consentimiento para firmar en línea</span><span lang="en">Consent to sign online</span></h2>
+            <div class="doc-plain" data-doc="esign"></div>
+            <label class="consent" for="ag-esign">
+              <input type="checkbox" id="ag-esign">
+              <span><span lang="es">Doy mi consentimiento para recibir y firmar estos documentos de forma electrónica.</span><span lang="en">I consent to receive and sign these documents electronically.</span><p class="field-error" hidden></p></span>
+            </label>
+            <label class="consent" for="ag-access">
+              <input type="checkbox" id="ag-access">
+              <span><span lang="es">Confirmo que puedo abrir y leer esta página, y que puedo imprimirla o guardarla.</span><span lang="en">I confirm I can open and read this page, and that I can print or save it.</span><p class="field-error" hidden></p></span>
+            </label>
+            <div class="step-actions">
+              <button class="btn btn-ghost" type="button" data-back><span lang="es">Atrás</span><span lang="en">Back</span></button>
+              <button class="btn btn-primary" type="button" data-next><span lang="es">Continuar</span><span lang="en">Continue</span></button>
+            </div>
+          </section>
+
+          <!-- Step 3 -->
+          <section class="step-card" data-step="3" hidden>
+            <p class="doc-label"><span lang="es">Documento 1 de 3</span><span lang="en">Document 1 of 3</span></p>
+            <h2><span lang="es">Tus derechos según la ley federal</span><span lang="en">Your rights under federal law</span></h2>
+            <p><span lang="es">La ley nos pide entregarte esta declaración por separado, antes de cualquier contrato.</span><span lang="en">The law requires us to give you this statement separately, before any contract.</span></p>
+            <div class="legal-doc" data-doc="federal" tabindex="0"></div>
+            <div class="field ack">
+              <label for="ag-ack-federal"><span lang="es">Escribe tu nombre completo para firmar de recibido</span><span lang="en">Type your full name to acknowledge receipt</span></label>
+              <input id="ag-ack-federal" type="text" autocomplete="off">
+              <p class="form-note"><span lang="es">Debe coincidir con:</span><span lang="en">Must match:</span> <strong data-name-hint></strong></p>
+              <p class="field-error" hidden></p>
+            </div>
+            <div class="step-actions">
+              <button class="btn btn-ghost" type="button" data-back><span lang="es">Atrás</span><span lang="en">Back</span></button>
+              <button class="btn btn-primary" type="button" data-next><span lang="es">Firmar de recibido y continuar</span><span lang="en">Acknowledge and continue</span></button>
+            </div>
+          </section>
+
+          <!-- Step 4 -->
+          <section class="step-card" data-step="4" hidden>
+            <p class="doc-label"><span lang="es">Documento 2 de 3</span><span lang="en">Document 2 of 3</span></p>
+            <h2><span lang="es">Declaración de divulgación de Texas</span><span lang="en">Texas disclosure statement</span></h2>
+            <div class="legal-doc" data-doc="texas" tabindex="0"></div>
+            <div class="field ack">
+              <label for="ag-ack-texas"><span lang="es">Escribe tu nombre completo para firmar de recibido</span><span lang="en">Type your full name to acknowledge receipt</span></label>
+              <input id="ag-ack-texas" type="text" autocomplete="off">
+              <p class="form-note"><span lang="es">Debe coincidir con:</span><span lang="en">Must match:</span> <strong data-name-hint></strong></p>
+              <p class="field-error" hidden></p>
+            </div>
+            <div class="step-actions">
+              <button class="btn btn-ghost" type="button" data-back><span lang="es">Atrás</span><span lang="en">Back</span></button>
+              <button class="btn btn-primary" type="button" data-next><span lang="es">Firmar de recibido y continuar</span><span lang="en">Acknowledge and continue</span></button>
+            </div>
+          </section>
+
+          <!-- Step 5 -->
+          <section class="step-card" data-step="5" hidden>
+            <p class="doc-label"><span lang="es">Documento 3 de 3</span><span lang="en">Document 3 of 3</span></p>
+            <h2><span lang="es">Contrato de servicios</span><span lang="en">Services contract</span></h2>
+            <div class="legal-doc" data-doc="contract" tabindex="0"></div>
+            <h3 class="notices-title"><span lang="es">Avisos de cancelación (adjuntos)</span><span lang="en">Notice of Cancellation (attached)</span></h3>
+            <div class="legal-doc legal-doc-short" data-doc="notices" tabindex="0"></div>
+
+            <div class="sign-block">
+              <div data-doc="cancel"></div>
+              <p class="deadline-note"><span lang="es">Fecha límite para cancelar:</span><span lang="en">Cancellation deadline:</span> <strong data-deadline-text></strong> <span lang="es">a la medianoche.</span><span lang="en">at midnight.</span></p>
+              <div class="field">
+                <label for="ag-sign"><span lang="es">Firma: escribe tu nombre legal completo</span><span lang="en">Signature: type your full legal name</span></label>
+                <input id="ag-sign" class="sig-input" type="text" autocomplete="off">
+                <p class="form-note"><span lang="es">Debe coincidir con:</span><span lang="en">Must match:</span> <strong data-name-hint></strong></p>
+                <p class="field-error" hidden></p>
+              </div>
+              <label class="consent" for="ag-agree">
+                <input type="checkbox" id="ag-agree">
+                <span><span lang="es">Leí y acepto este contrato. Entiendo que hoy no pago nada y que cada sesión se factura después de recibirla.</span><span lang="en">I have read and agree to this contract. I understand I pay nothing today and each session is invoiced after I receive it.</span><p class="field-error" hidden></p></span>
+              </label>
+            </div>
+
+            <div class="step-actions">
+              <button class="btn btn-ghost" type="button" data-back><span lang="es">Atrás</span><span lang="en">Back</span></button>
+              <button class="btn btn-primary" type="submit" data-sign><span lang="es">Firmar acuerdo</span><span lang="en">Sign agreement</span></button>
+            </div>
+            <div class="form-alert" data-alert role="alert" hidden></div>
+          </section>
+        </form>
+      </div>
+
+      <section class="step-card done-card" data-done hidden tabindex="-1">
+        <div class="gem" data-gem-static="1"></div>
+        <h2><span lang="es">Acuerdo firmado</span><span lang="en">Agreement signed</span></h2>
+        <p><span lang="es">Guarda tu copia. Incluye los 3 documentos y los avisos de cancelación.</span><span lang="en">Save your copy. It includes all 3 documents and the cancellation notices.</span></p>
+        <ul class="check-list">
+          <li><span lang="es">Puedes cancelar sin costo hasta la medianoche del</span><span lang="en">You can cancel at no cost until midnight on</span> <strong data-done-deadline></strong>.</li>
+          <li><span lang="es">Tu primera sesión puede agendarse a partir del</span><span lang="en">Your first session can be scheduled starting</span> <strong data-done-earliest></strong>.</li>
+          <li><span lang="es">Hoy no pagas nada. Te llegará una factura después de cada sesión.</span><span lang="en">You pay nothing today. You'll get an invoice after each session.</span></li>
+        </ul>
+        <div class="success-actions">
+          <a class="btn btn-primary" data-download href="#"><span lang="es">Descargar mi copia</span><span lang="en">Download my copy</span></a>
+          <button class="btn btn-ghost" type="button" data-print><span lang="es">Imprimir o guardar PDF</span><span lang="en">Print or save PDF</span></button>
+        </div>
+        <p class="form-note"><span lang="es">Código de verificación:</span><span lang="en">Verification code:</span> <code data-done-hash></code></p>
+      </section>
+    </div>
+  </main>
+
+  <div id="print-root"></div>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-legal" style="padding-top:0">
+        <p data-cso hidden>
+          <span lang="es">Organización de Servicios de Crédito registrada en Texas, núm.</span>
+          <span lang="en">Registered Texas Credit Services Organization No.</span>
+          <span data-cso-num></span>
+        </p>
+        <p>© <span data-year>2026</span> <span data-legal-name>My Crystal Score</span></p>
+        <p><a href="legal.html"><span lang="es">Privacidad, términos y tus derechos de crédito</span><span lang="en">Privacy, terms, and your credit rights</span></a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/agreement-legal.js"></script>
+  <script src="assets/js/agreement-contract.js"></script>
+  <script src="assets/js/agreement.js"></script>
+</body>
+</html>

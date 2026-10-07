@@ -129,6 +129,7 @@
     qs.forEach(function (v, k) { if (/^(utm_|ttclid|fbclid|gclid)/.test(k)) utm[k] = v; });
     var digits = form.phone.value.replace(/\D/g, '');
     return {
+      type: 'lead',
       first_name: form.first_name.value.trim(),
       last_name: form.last_name.value.trim(),
       phone: '+1' + digits,

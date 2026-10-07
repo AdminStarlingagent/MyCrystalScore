@@ -6,14 +6,16 @@ Spanish by default with an English toggle (top right). All settings live in one 
 ```
 index.html               Home: hero, the 4 sessions, score simulator, pricing, FAQ
 signup.html              Lead form (no SSN/ITIN collected)
+agreement.html           Client agreement: disclosures, e-sign, contract, cancellation forms
 legal.html               Privacy, terms, credit rights (draft — attorney review)
 404.html                 Not-found page
 assets/js/config.js      ← EDIT THIS: session price, phone, form destinations
 assets/js/main.js        Language toggle, crystal graphic, simulator
 assets/js/signup.js      Form validation + sending
+assets/js/agreement*.js  Agreement flow + legal texts (statutory text is verbatim — don't edit)
 assets/css/styles.css    All styles
 assets/img/              Logo + favicon
-supabase-mcs-leads.sql   Optional lead table (run in Supabase SQL editor)
+supabase-mcs-leads.sql   Optional lead + signed-agreement tables (run in Supabase SQL editor)
 ```
 
 ---
@@ -116,10 +118,40 @@ The business model is **credit coaching, billed after each session** — there a
 
 ---
 
-## 6. Before you launch
+## 6. Client agreement (agreement.html)
+
+Clients sign here **before the first session** — and since every session is invoiced after it's delivered, they always sign before they pay.
+
+**Send each client a personal link** (from FUB, SMS, or email) so their info is pre-filled:
+
+```
+https://mycrystalscore.com/agreement.html?name=Maria%20Lopez&email=maria@example.com&phone=8325550123
+```
+
+What the page does, in the order the law requires:
+
+| Step | What happens | Why |
+|---|---|---|
+| 1. Tus datos | Name, email, phone, address | Contract parties |
+| 2. Firma electrónica | E-SIGN consent + "I can open/print this" | 15 U.S.C. §7001(c) |
+| 3. Documento 1 | Federal "Consumer Credit File Rights" statement (verbatim), signed acknowledgment | 15 U.S.C. §1679c — separate document, before any contract |
+| 4. Documento 2 | Texas disclosure statement, signed acknowledgment | Tex. Fin. Code §393.105 |
+| 5. Documento 3 | Contract + both cancellation statements next to the signature + Notice of Cancellation forms | 15 U.S.C. §§1679d–1679e; Tex. Fin. Code §§393.201–393.202 |
+| Done | Download / print a full copy (2 copies of each cancellation form), cancellation deadline, earliest session date | 15 U.S.C. §1679e(c); Tex. Fin. Code §393.203 |
+
+- The cancellation deadline counts **3 business days** (skips weekends and federal holidays) — the later of the federal and Texas deadlines, so both are met. **Don't hold a session before the "earliest session" date** (15 U.S.C. §1679d(a)(2)).
+- Every signature is sent to your webhook (with `type=agreement`) and/or the `mcs_agreements` Supabase table, including the full signed document (`doc_html`) and a SHA-256 fingerprint. **Keep these at least 2 years.** In n8n, branch on `type` (`lead` vs `agreement`), email the client a copy, and add a note in FUB. The n8n webhook can also log the client's IP from request headers.
+- The page **will not allow signing** until these are filled in `config.js`: `agreement.legalEntity`, `businessAddress`, `registeredAgentName`, `registeredAgentAddress`, `txCsoRegistration`, the surety bond (or surety account) details, and a form destination. Preview it anytime at `/agreement.html?preview=1` (signing disabled) — that's the version to send your attorney.
+- Changing the contract later? Bump `agreement.version` so each signed record shows which version the client saw.
+- When you invoice in QuickBooks, add a note like *"Sesión 1 de 4 — Acuerdo firmado el 7 de octubre de 2026."*
+
+---
+
+## 7. Before you launch
 
 - [ ] Texas Credit Services Organization registration + bond on file with the Texas Secretary of State; number added to `txCsoRegistration`. (Paid advice about improving credit counts as a CSO under Texas law and federal CROA.)
-- [ ] Written client agreement that lists each session as its own service and price, with the 3-business-day cancellation notice — attorney-reviewed.
+- [ ] Attorney has reviewed `agreement.html?preview=1` (all three documents and the cancellation forms).
+- [ ] $10,000 surety bond (or surety account) in place. Texas only allows billing before *all* services are finished if the CSO is bonded (Tex. Fin. Code §393.302) — per-session billing depends on it.
 - [ ] Confirm with Intuit (or a processor that accepts credit-services businesses) that you can take card/ACH payments for this service. Intuit's Acceptable Use Policy lists "Credit Repair, Counseling and Protection Services" as restricted.
 - [ ] `legal.html` reviewed by an attorney.
 - [ ] Old prepaid QuickBooks payment links deactivated.
