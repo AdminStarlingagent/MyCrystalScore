@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="es" data-lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MyCrystalScore | Monitoreo y reparación de crédito en español</title>
+  <meta name="mcs-title-es" content="MyCrystalScore | Monitoreo y reparación de crédito en español">
+  <meta name="mcs-title-en" content="MyCrystalScore | Credit monitoring and credit repair">
+  <meta name="description" content="Monitoreo de Equifax, Experian y TransUnion, disputas de errores y un plan paso a paso para subir tu puntaje. En español e inglés, desde Houston, Texas.">
+  <meta property="og:title" content="MyCrystalScore | Tu crédito, claro como el cristal">
+  <meta property="og:description" content="Monitoreo de los 3 burós, disputas de errores y un plan paso a paso para subir tu puntaje.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#1D1838">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="assets/js/config.js"></script>
+  <script>
+    (function () {
+      try {
+        var p = new URLSearchParams(location.search).get('lang');
+        var l = p || localStorage.getItem('mcs-lang') || (window.MCS_CONFIG && MCS_CONFIG.defaultLang) || 'es';
+        if (p) localStorage.setItem('mcs-lang', p);
+        l = l === 'en' ? 'en' : 'es';
+        document.documentElement.setAttribute('data-lang', l);
+        document.documentElement.lang = l;
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main"><span lang="es">Saltar al contenido</span><span lang="en">Skip to content</span></a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/img/logo.svg" alt="" width="28" height="32">
+        <span>MyCrystalScore</span>
+      </a>
+      <nav class="nav" id="nav" data-aria-es="Navegación principal" data-aria-en="Main navigation">
+        <a href="#como-funciona"><span lang="es">Cómo funciona</span><span lang="en">How it works</span></a>
+        <a href="#simulador"><span lang="es">Simulador</span><span lang="en">Simulator</span></a>
+        <a href="#planes"><span lang="es">Planes</span><span lang="en">Plans</span></a>
+        <a href="#preguntas"><span lang="es">Preguntas</span><span lang="en">FAQ</span></a>
+        <a class="nav-login" href="#" data-portal hidden><span lang="es">Entrar a mi cuenta</span><span lang="en">Log in to my account</span></a>
+        <a class="nav-cta" href="signup.html"><span lang="es">Empieza hoy</span><span lang="en">Get started</span></a>
+      </nav>
+      <div class="header-actions">
+        <button class="lang-toggle" type="button" data-lang-toggle data-aria-es="Ver el sitio en inglés" data-aria-en="Ver el sitio en español">
+          <span lang="es">EN</span><span lang="en">ES</span>
+        </button>
+        <a class="link-login" href="#" data-portal hidden><span lang="es">Entrar</span><span lang="en">Log in</span></a>
+        <a class="btn btn-primary btn-sm" href="signup.html"><span lang="es">Empieza hoy</span><span lang="en">Get started</span></a>
+        <button class="menu-btn" type="button" aria-controls="nav" aria-expanded="false" data-aria-es="Abrir menú" data-aria-en="Open menu"><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ Hero ============ -->
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <h1>
+            <span lang="es">Tu crédito, claro como el cristal.</span>
+            <span lang="en">Your credit, crystal clear.</span>
+          </h1>
+          <p class="lede">
+            <span lang="es">Vigilamos tus reportes de Equifax, Experian y TransUnion, disputamos los errores y te damos un plan paso a paso para subir tu puntaje. En español, con gente de Houston.</span>
+            <span lang="en">We watch your Equifax, Experian, and TransUnion reports, dispute the errors, and give you a step-by-step plan to raise your score. In English or Spanish, with people from Houston.</span>
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="signup.html"><span lang="es">Empieza hoy</span><span lang="en">Get started</span></a>
+            <a class="btn btn-ghost" href="#planes"><span lang="es">Ver planes</span><span lang="en">See plans</span></a>
+          </div>
+          <ul class="assurances">
+            <li><span lang="es">Te atendemos en español o en inglés</span><span lang="en">Help in English or Spanish</span></li>
+            <li><span lang="es">No cobramos por reparación antes de hacer el trabajo</span><span lang="en">No charge for credit repair before the work is done</span></li>
+            <li><span lang="es">Revisar tu propio crédito no baja tu puntaje</span><span lang="en">Checking your own credit doesn't lower your score</span></li>
+          </ul>
+        </div>
+
+        <figure class="jewel">
+          <div class="gem" data-gem="hero"></div>
+          <div class="score-readout" aria-live="off">
+            <span class="score-num" data-score-out="hero">548</span>
+            <span class="score-band" data-band-out="hero">Bajo</span>
+          </div>
+          <div class="meter" data-meter="hero"><i></i></div>
+          <div class="meter-scale"><span>300</span><span>850</span></div>
+          <div class="bureaus">
+            <div><span>Equifax</span><b data-bureau="0">538</b></div>
+            <div><span>Experian</span><b data-bureau="1">548</b></div>
+            <div><span>TransUnion</span><b data-bureau="2">531</b></div>
+          </div>
+          <figcaption>
+            <span lang="es">Ejemplo ilustrativo. No es un resultado típico ni garantizado.</span>
+            <span lang="en">Illustrative example. Not a typical or guaranteed result.</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============ How it works ============ -->
+    <section class="section" id="como-funciona">
+      <div class="wrap">
+        <div class="section-head">
+          <h2><span lang="es">Cómo funciona</span><span lang="en">How it works</span></h2>
+          <p class="section-lede">
+            <span lang="es">Cuatro pasos, y en cada uno sabes en qué vamos.</span>
+            <span lang="en">Four steps, and you always know where things stand.</span>
+          </p>
+        </div>
+        <ol class="step-list">
+          <li>
+            <h3><span lang="es">Cuéntanos tu meta</span><span lang="en">Tell us your goal</span></h3>
+            <p>
+              <span lang="es">Llena un formulario de dos minutos. Te llamamos para entender qué quieres lograr: tu primera casa, un carro o simplemente dormir tranquilo.</span>
+              <span lang="en">Fill out a two-minute form. We call you to understand what you want: your first home, a car, or just peace of mind.</span>
+            </p>
+          </li>
+          <li>
+            <h3><span lang="es">Activa tu monitoreo</span><span lang="en">Turn on monitoring</span></h3>
+            <p>
+              <span lang="es">Conectas tus reportes de los tres burós para que veamos lo mismo que ve un prestamista.</span>
+              <span lang="en">You connect your reports from all three bureaus so we see the same thing a lender sees.</span>
+            </p>
+          </li>
+          <li>
+            <h3><span lang="es">Revisamos línea por línea</span><span lang="en">We review every line</span></h3>
+            <p>
+              <span lang="es">Buscamos lo que no debería estar: cuentas que no son tuyas, cuentas duplicadas, saldos o fechas mal reportadas.</span>
+              <span lang="en">We look for what shouldn't be there: accounts that aren't yours, duplicates, and wrong balances or dates.</span>
+            </p>
+          </li>
+          <li>
+            <h3><span lang="es">Disputamos y te guiamos</span><span lang="en">We dispute and guide you</span></h3>
+            <p>
+              <span lang="es">Disputamos cada error documentado y cada mes te decimos qué hacer: qué pagar primero, qué no cerrar y cuánto usar de tus tarjetas.</span>
+              <span lang="en">We dispute each documented error, and every month we tell you what to do: what to pay first, what not to close, and how much of your cards to use.</span>
+            </p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ Score simulator ============ -->
+    <section class="section sim" id="simulador">
+      <div class="wrap sim-grid">
+        <div class="sim-intro">
+          <h2><span lang="es">¿Qué mueve tu puntaje?</span><span lang="en">What moves your score?</span></h2>
+          <p>
+            <span lang="es">Mueve los controles y mira cómo cambia un puntaje estimado. Mientras más claro el cristal, más fuerte tu crédito.</span>
+            <span lang="en">Move the controls and watch an estimated score change. The clearer the crystal, the stronger your credit.</span>
+          </p>
+        </div>
+
+        <form class="sim-controls" data-sim>
+          <div class="ctl">
+            <label for="s-pay"><span><span lang="es">Pagos a tiempo</span><span lang="en">On-time payments</span></span><output id="o-pay" for="s-pay">95%</output></label>
+            <input type="range" id="s-pay" min="80" max="100" step="1" value="95">
+          </div>
+          <div class="ctl">
+            <label for="s-util"><span><span lang="es">Uso de tus tarjetas</span><span lang="en">Credit card use</span></span><output id="o-util" for="s-util">45%</output></label>
+            <input type="range" id="s-util" min="0" max="100" step="5" value="45" aria-describedby="h-util">
+            <p class="ctl-hint" id="h-util"><span lang="es">Cuánto debes comparado con tu límite total.</span><span lang="en">How much you owe compared to your total limit.</span></p>
+          </div>
+          <div class="ctl">
+            <label for="s-col"><span><span lang="es">Cuentas en colección</span><span lang="en">Accounts in collections</span></span><output id="o-col" for="s-col">1</output></label>
+            <input type="range" id="s-col" min="0" max="5" step="1" value="1">
+          </div>
+          <div class="ctl">
+            <label for="s-inq"><span><span lang="es">Solicitudes de crédito este año</span><span lang="en">Credit applications this year</span></span><output id="o-inq" for="s-inq">3</output></label>
+            <input type="range" id="s-inq" min="0" max="8" step="1" value="3">
+          </div>
+          <div class="ctl">
+            <label for="s-age"><span><span lang="es">Edad promedio de tus cuentas</span><span lang="en">Average age of your accounts</span></span><output id="o-age" for="s-age">3 años</output></label>
+            <input type="range" id="s-age" min="0" max="20" step="1" value="3">
+          </div>
+          <label class="ctl-check" for="s-mix">
+            <input type="checkbox" id="s-mix">
+            <span>
+              <span lang="es">Tengo una tarjeta de crédito y también un préstamo a plazos (auto, mueblería, estudiante)</span>
+              <span lang="en">I have a credit card and also an installment loan (auto, furniture, student)</span>
+            </span>
+          </label>
+        </form>
+
+        <div class="sim-aside">
+          <div class="sim-result">
+            <div class="gem" data-gem="sim"></div>
+            <div>
+              <div class="score-readout" aria-live="polite">
+                <span class="score-num" data-score-out="sim">579</span>
+                <span class="score-band" data-band-out="sim">Regular</span>
+              </div>
+              <div class="meter" data-meter="sim"><i></i></div>
+              <div class="meter-scale"><span>300</span><span>850</span></div>
+            </div>
+          </div>
+          <div class="sim-notes">
+            <p class="sim-tip" data-sim-tip aria-live="polite"></p>
+            <p class="fine">
+              <span lang="es">Estimación educativa basada en las categorías generales que FICO publica. No es tu puntaje real de FICO ni de VantageScore, y los modelos reales usan mucha más información.</span>
+              <span lang="en">Educational estimate based on the general categories FICO publishes. It is not your actual FICO or VantageScore score, and real models use much more information.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ What you see inside ============ -->
+    <section class="section">
+      <div class="wrap inside-grid">
+        <div class="alerts-mock" aria-hidden="true">
+          <div class="mock-head">
+            <strong><span lang="es">Alertas</span><span lang="en">Alerts</span></strong>
+            <small><span lang="es">Ejemplo</span><span lang="en">Example</span></small>
+          </div>
+          <div class="alert">
+            <span class="dot"></span>
+            <div>
+              <strong><span lang="es">Disputa resuelta</span><span lang="en">Dispute resolved</span></strong>
+              <span class="alert-sub"><span lang="es">TransUnion corrigió una cuenta duplicada</span><span lang="en">TransUnion corrected a duplicate account</span></span>
+            </div>
+            <time><span lang="es">Hoy</span><span lang="en">Today</span></time>
+          </div>
+          <div class="alert">
+            <span class="dot lilac"></span>
+            <div>
+              <strong><span lang="es">Bajó el uso de tus tarjetas</span><span lang="en">Your card use went down</span></strong>
+              <span class="alert-sub"><span lang="es">Equifax: ahora usas el 18% de tu límite</span><span lang="en">Equifax: you now use 18% of your limit</span></span>
+            </div>
+            <time><span lang="es">Ayer</span><span lang="en">Yesterday</span></time>
+          </div>
+          <div class="alert">
+            <span class="dot rose"></span>
+            <div>
+              <strong><span lang="es">Nueva consulta de crédito</span><span lang="en">New credit inquiry</span></strong>
+              <span class="alert-sub"><span lang="es">Experian: solicitud en un concesionario de autos</span><span lang="en">Experian: application at a car dealership</span></span>
+            </div>
+            <time><span lang="es">Hace 3 días</span><span lang="en">3 days ago</span></time>
+          </div>
+          <div class="alert">
+            <span class="dot"></span>
+            <div>
+              <strong><span lang="es">Reportes actualizados</span><span lang="en">Reports updated</span></strong>
+              <span class="alert-sub"><span lang="es">Equifax, Experian y TransUnion</span><span lang="en">Equifax, Experian, and TransUnion</span></span>
+            </div>
+            <time><span lang="es">Hace 1 semana</span><span lang="en">1 week ago</span></time>
+          </div>
+        </div>
+
+        <div class="inside-copy">
+          <h2><span lang="es">Todo tu crédito en un solo lugar</span><span lang="en">Your whole credit picture in one place</span></h2>
+          <p class="section-lede">
+            <span lang="es">Tu monitoreo te avisa cuando algo cambia, y nosotros te explicamos qué significa y qué hacer.</span>
+            <span lang="en">Your monitoring tells you when something changes, and we explain what it means and what to do.</span>
+          </p>
+          <dl class="feature-list">
+            <div>
+              <dt><span lang="es">Los tres burós</span><span lang="en">All three bureaus</span></dt>
+              <dd><span lang="es">Reportes y puntajes de Equifax, Experian y TransUnion.</span><span lang="en">Reports and scores from Equifax, Experian, and TransUnion.</span></dd>
+            </div>
+            <div>
+              <dt><span lang="es">Alertas</span><span lang="en">Alerts</span></dt>
+              <dd><span lang="es">Te enteras de consultas nuevas, cuentas nuevas y cambios de saldo.</span><span lang="en">Find out about new inquiries, new accounts, and balance changes.</span></dd>
+            </div>
+            <div>
+              <dt><span lang="es">Seguimiento de disputas</span><span lang="en">Dispute tracking</span></dt>
+              <dd><span lang="es">Ves qué disputamos, ante quién y qué respondieron.</span><span lang="en">See what we disputed, with whom, and how they responded.</span></dd>
+            </div>
+            <div>
+              <dt><span lang="es">Simulador</span><span lang="en">Simulator</span></dt>
+              <dd><span lang="es">Prueba antes de actuar y mira cómo podría moverse tu puntaje.</span><span lang="en">Try before you act and see how your score could move.</span></dd>
+            </div>
+            <div>
+              <dt><span lang="es">En tu idioma</span><span lang="en">In your language</span></dt>
+              <dd><span lang="es">Te explicamos todo en español o en inglés, sin palabras complicadas.</span><span lang="en">We explain everything in English or Spanish, without the jargon.</span></dd>
+            </div>
+            <div>
+              <dt><span lang="es">Rumbo a tu casa</span><span lang="en">On the way home</span></dt>
+              <dd><span lang="es">Si quieres comprar, trabajamos hacia el puntaje que piden los préstamos FHA y convencionales.</span><span lang="en">If you want to buy, we work toward the score FHA and conventional loans ask for.</span></dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Who it's for ============ -->
+    <section class="section audience">
+      <div class="wrap">
+        <div class="section-head">
+          <h2><span lang="es">Hecho para familias que van por su casa</span><span lang="en">Built for families working toward a home</span></h2>
+        </div>
+        <div class="aud-grid">
+          <article>
+            <h3><span lang="es">Tu primera casa</span><span lang="en">Your first home</span></h3>
+            <p>
+              <span lang="es">Sabemos lo que revisan los prestamistas y te ayudamos a llegar al puntaje que necesitas para calificar.</span>
+              <span lang="en">We know what lenders look at, and we help you reach the score you need to qualify.</span>
+            </p>
+          </article>
+          <article>
+            <h3><span lang="es">Crédito con ITIN</span><span lang="en">Credit with an ITIN</span></h3>
+            <p>
+              <span lang="es">Con ITIN también puedes tener y cuidar tu historial de crédito. Te explicamos cómo, paso a paso.</span>
+              <span lang="en">With an ITIN you can build and protect a credit history too. We show you how, step by step.</span>
+            </p>
+          </article>
+          <article>
+            <h3><span lang="es">Empezar de nuevo</span><span lang="en">Starting over</span></h3>
+            <p>
+              <span lang="es">Colecciones, cuentas que no reconoces, un año difícil. Revisamos qué se puede disputar y qué toca reconstruir.</span>
+              <span lang="en">Collections, accounts you don't recognize, a hard year. We sort out what can be disputed and what needs rebuilding.</span>
+            </p>
+          </article>
+        </div>
+
+        <!-- Real estate band — controlled by realEstateUrl in config.js -->
+        <aside class="home-bridge" data-realestate hidden>
+          <p>
+            <strong><span lang="es">¿La meta es tu casa propia?</span><span lang="en">Is your goal owning a home?</span></strong>
+            <span lang="es">Cuando tu crédito esté listo, el Jason Aguirre Group de eXp Realty te acompaña en la compra.</span>
+            <span lang="en">When your credit is ready, the Jason Aguirre Group at eXp Realty can guide you through the purchase.</span>
+            <a class="small-link" href="https://jasonaguirregroup.company/iabs.html" target="_blank" rel="noopener"><span lang="es">Información sobre servicios de corretaje (IABS)</span><span lang="en">Information About Brokerage Services (IABS)</span></a>
+          </p>
+          <a class="btn btn-ghost" data-realestate-link href="#" target="_blank" rel="noopener"><span lang="es">Conoce al equipo</span><span lang="en">Meet the team</span></a>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============ Plans ============
+         Prices come from config.js (prices: monitoring / repair / couple). -->
+    <section class="section" id="planes">
+      <div class="wrap">
+        <div class="section-head">
+          <h2><span lang="es">Planes</span><span lang="en">Plans</span></h2>
+          <p class="section-lede">
+            <span lang="es">Pago mensual, sin contratos largos. Puedes cancelar cuando quieras.</span>
+            <span lang="en">Monthly, with no long contracts. Cancel anytime.</span>
+          </p>
+        </div>
+        <div class="plan-grid">
+          <article class="plan">
+            <h3><span lang="es">Monitoreo</span><span lang="en">Monitoring</span></h3>
+            <p class="plan-for"><span lang="es">Para vigilar tu crédito por tu cuenta.</span><span lang="en">For keeping an eye on your credit yourself.</span></p>
+            <p class="price"><span class="cur">$</span><span class="amt" data-price="monitoring">29.99</span><span class="per"><span lang="es">/mes</span><span lang="en">/mo</span></span></p>
+            <ul>
+              <li><span lang="es">Reportes y puntajes de los 3 burós</span><span lang="en">Reports and scores from all 3 bureaus</span></li>
+              <li><span lang="es">Alertas de cambios</span><span lang="en">Change alerts</span></li>
+              <li><span lang="es">Simulador de puntaje</span><span lang="en">Score simulator</span></li>
+              <li><span lang="es">Ayuda en español o inglés</span><span lang="en">Help in English or Spanish</span></li>
+            </ul>
+            <a class="btn btn-ghost" data-plan-link="monitoring" href="signup.html?plan=monitoreo"><span lang="es">Activar monitoreo</span><span lang="en">Turn on monitoring</span></a>
+          </article>
+
+          <article class="plan plan-featured">
+            <p class="plan-flag"><span lang="es">Recomendado</span><span lang="en">Recommended</span></p>
+            <h3><span lang="es">Reparación</span><span lang="en">Credit repair</span></h3>
+            <p class="plan-for"><span lang="es">Para corregir errores y subir tu puntaje con un plan.</span><span lang="en">For fixing errors and raising your score with a plan.</span></p>
+            <p class="price"><span class="cur">$</span><span class="amt" data-price="repair">99</span><span class="per"><span lang="es">/mes</span><span lang="en">/mo</span></span></p>
+            <ul>
+              <li><span lang="es">Revisión de tus 3 reportes, línea por línea</span><span lang="en">Line-by-line review of your 3 reports</span></li>
+              <li><span lang="es">Disputas de información inexacta ante burós y acreedores</span><span lang="en">Disputes of inaccurate information with bureaus and creditors</span></li>
+              <li><span lang="es">Plan mensual: qué pagar, qué no cerrar, cuánto usar</span><span lang="en">Monthly plan: what to pay, what to keep open, how much to use</span></li>
+              <li><span lang="es">Llamada de avance cada mes</span><span lang="en">Monthly progress call</span></li>
+              <li><span lang="es">Requiere monitoreo activo (te ayudamos a activarlo)</span><span lang="en">Requires active monitoring (we help you set it up)</span></li>
+            </ul>
+            <a class="btn btn-crystal" href="signup.html?plan=reparacion"><span lang="es">Empezar mi revisión</span><span lang="en">Start my review</span></a>
+          </article>
+
+          <article class="plan">
+            <h3><span lang="es">Pareja</span><span lang="en">Couples</span></h3>
+            <p class="plan-for"><span lang="es">Para dos personas que van a comprar juntas.</span><span lang="en">For two people who plan to buy together.</span></p>
+            <p class="price"><span class="cur">$</span><span class="amt" data-price="couple">169</span><span class="per"><span lang="es">/mes</span><span lang="en">/mo</span></span></p>
+            <ul>
+              <li><span lang="es">Todo lo del plan Reparación, para los dos</span><span lang="en">Everything in Credit repair, for both of you</span></li>
+              <li><span lang="es">Un solo plan de acción para el hogar</span><span lang="en">One action plan for your household</span></li>
+              <li><span lang="es">Estrategia de quién aplica al préstamo</span><span lang="en">Strategy for who applies for the loan</span></li>
+            </ul>
+            <a class="btn btn-ghost" href="signup.html?plan=pareja"><span lang="es">Inscribirnos los dos</span><span lang="en">Sign up together</span></a>
+          </article>
+        </div>
+        <p class="plans-fine">
+          <span lang="es">No cobramos por servicios de reparación de crédito antes de realizarlos. Antes de empezar firmas un contrato por escrito y puedes cancelarlo sin penalidad dentro de 3 días hábiles. El monitoreo de los 3 burós se contrata con nuestro proveedor asociado y se cobra por separado. Los resultados varían y no garantizamos ningún aumento de puntaje.</span>
+          <span lang="en">We don't charge for credit repair services before they are performed. Before we start, you sign a written contract that you can cancel without penalty within 3 business days. Three-bureau monitoring is provided by our partner and billed separately. Results vary and we don't guarantee any score increase.</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="section" id="preguntas">
+      <div class="wrap faq-grid">
+        <div class="faq-aside">
+          <h2><span lang="es">Preguntas frecuentes</span><span lang="en">Questions</span></h2>
+          <p data-contact>
+            <span lang="es">¿Tienes otra pregunta? Llámanos al</span>
+            <span lang="en">Have another question? Call us at</span>
+            <a data-phone href="#"></a>.
+          </p>
+        </div>
+        <div class="faq-list">
+          <details>
+            <summary><span lang="es">¿Cuánto tiempo toma ver resultados?</span><span lang="en">How long until I see results?</span></summary>
+            <div class="answer">
+              <p lang="es">Depende de tu reporte. Los burós normalmente tienen 30 días para investigar cada disputa, así que las primeras respuestas suelen llegar en uno o dos meses. Reconstruir un historial toma más tiempo, y te decimos con honestidad qué esperar.</p>
+              <p lang="en">It depends on your report. The bureaus generally have 30 days to investigate each dispute, so first responses usually arrive within one or two months. Rebuilding a history takes longer, and we'll tell you honestly what to expect.</p>
+            </div>
+          </details>
+          <details>
+            <summary><span lang="es">¿Pueden quitar cualquier cosa negativa?</span><span lang="en">Can you remove anything negative?</span></summary>
+            <div class="answer">
+              <p lang="es">No, y desconfía de quien te lo prometa. La ley permite disputar información inexacta, incompleta o que no se puede verificar. La información negativa correcta puede quedarse hasta 7 años, y algunas bancarrotas hasta 10. Lo que sí hacemos: encontrar los errores, disputarlos bien y ayudarte a construir historial positivo.</p>
+              <p lang="en">No, and be wary of anyone who promises that. The law lets you dispute information that is inaccurate, incomplete, or can't be verified. Accurate negative information can stay up to 7 years, and some bankruptcies up to 10. What we do: find the errors, dispute them properly, and help you build positive history.</p>
+            </div>
+          </details>
+          <details>
+            <summary><span lang="es">¿Puedo disputar errores yo mismo?</span><span lang="en">Can I dispute errors myself?</span></summary>
+            <div class="answer">
+              <p lang="es">Sí, y es gratis. Puedes disputar directamente con cada buró. Muchas personas nos contratan por el tiempo que ahorran, la organización y la experiencia, no porque sea la única forma.</p>
+              <p lang="en">Yes, and it's free. You can dispute directly with each bureau. Many people hire us for the time saved, the organization, and the experience, not because it's the only way.</p>
+            </div>
+          </details>
+          <details>
+            <summary><span lang="es">¿Revisar mi crédito baja mi puntaje?</span><span lang="en">Does checking my credit lower my score?</span></summary>
+            <div class="answer">
+              <p lang="es">No. Revisar tu propio crédito es una consulta suave y no afecta tu puntaje. Las consultas duras ocurren cuando solicitas un préstamo o una tarjeta. También puedes ver tus reportes gratis en <a href="https://www.annualcreditreport.com" target="_blank" rel="noopener">AnnualCreditReport.com</a>.</p>
+              <p lang="en">No. Checking your own credit is a soft inquiry and doesn't affect your score. Hard inquiries happen when you apply for a loan or a card. You can also see your reports for free at <a href="https://www.annualcreditreport.com" target="_blank" rel="noopener">AnnualCreditReport.com</a>.</p>
+            </div>
+          </details>
+          <details>
+            <summary><span lang="es">¿Trabajan con personas con ITIN?</span><span lang="en">Do you work with ITIN holders?</span></summary>
+            <div class="answer">
+              <p lang="es">Sí. Con un ITIN puedes tener un historial de crédito con los burós. Te ayudamos a revisarlo y a construirlo con buenos hábitos.</p>
+              <p lang="en">Yes. With an ITIN you can have a credit history with the bureaus. We help you review it and build it with good habits.</p>
+            </div>
+          </details>
+          <details>
+            <summary><span lang="es">¿Cómo y cuándo cobran?</span><span lang="en">How and when do you charge?</span></summary>
+            <div class="answer">
+              <p lang="es">No cobramos por servicios de reparación de crédito antes de realizarlos. Firmas un contrato por escrito que explica cada servicio, y puedes cancelarlo sin penalidad dentro de los 3 días hábiles después de firmar. El monitoreo se paga por separado con nuestro proveedor.</p>
+              <p lang="en">We don't charge for credit repair services before they're performed. You sign a written contract that explains each service, and you can cancel it without penalty within 3 business days of signing. Monitoring is paid separately to our provider.</p>
+            </div>
+          </details>
+          <details>
+            <summary><span lang="es">¿Por qué necesito monitoreo?</span><span lang="en">Why do I need monitoring?</span></summary>
+            <div class="answer">
+              <p lang="es">Para trabajar tu crédito necesitamos ver tus reportes actuales de los tres burós y saber cuándo cambian. El monitoreo nos da eso a ti y a nosotros.</p>
+              <p lang="en">To work on your credit we need your current reports from all three bureaus and to know when they change. Monitoring gives that to both of us.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Final call to action ============ -->
+    <section class="final">
+      <div class="wrap final-inner">
+        <div class="gem" data-gem-static="1"></div>
+        <div>
+          <h2><span lang="es">Tu siguiente paso toma dos minutos.</span><span lang="en">Your next step takes two minutes.</span></h2>
+          <p><span lang="es">Cuéntanos tu meta y te llamamos.</span><span lang="en">Tell us your goal and we'll call you.</span></p>
+        </div>
+        <a class="btn btn-crystal" href="signup.html"><span lang="es">Empieza hoy</span><span lang="en">Get started</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div>
+          <a class="brand" href="index.html"><img src="assets/img/logo.svg" alt="" width="28" height="32"><span>MyCrystalScore</span></a>
+          <p><span lang="es">Monitoreo y reparación de crédito en español e inglés. Houston, Texas.</span><span lang="en">Credit monitoring and credit repair in English and Spanish. Houston, Texas.</span></p>
+        </div>
+        <div>
+          <h3><span lang="es">Contacto</span><span lang="en">Contact</span></h3>
+          <ul>
+            <li data-contact><a data-phone href="#"></a></li>
+            <li data-contact><a data-email href="#"></a></li>
+            <li><a href="signup.html"><span lang="es">Empieza hoy</span><span lang="en">Get started</span></a></li>
+          </ul>
+        </div>
+        <div>
+          <h3><span lang="es">Legal</span><span lang="en">Legal</span></h3>
+          <ul>
+            <li><a href="legal.html#privacidad"><span lang="es">Política de privacidad</span><span lang="en">Privacy policy</span></a></li>
+            <li><a href="legal.html#terminos"><span lang="es">Términos de servicio</span><span lang="en">Terms of service</span></a></li>
+            <li><a href="legal.html#avisos"><span lang="es">Tus derechos de crédito</span><span lang="en">Your credit rights</span></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-legal">
+        <p lang="es">MyCrystalScore ofrece servicios de reparación y monitoreo de crédito. No somos un buró de crédito ni un prestamista. Tienes derecho a disputar información inexacta directamente con los burós de crédito, sin costo. Nadie puede eliminar legalmente información negativa que sea correcta y actual. No cobramos por servicios de reparación antes de realizarlos. Los resultados varían y no garantizamos aumentos de puntaje. Obtén tus reportes gratis en AnnualCreditReport.com. Equifax, Experian, TransUnion, FICO y VantageScore son marcas de sus respectivos dueños y no están afiliadas con MyCrystalScore.</p>
+        <p lang="en">MyCrystalScore provides credit repair and credit monitoring services. We are not a credit bureau or a lender. You have the right to dispute inaccurate information directly with the credit bureaus at no cost. No one can legally remove accurate and timely negative information. We don't charge for credit repair services before they are performed. Results vary and we don't guarantee score increases. Get your free reports at AnnualCreditReport.com. Equifax, Experian, TransUnion, FICO, and VantageScore are trademarks of their respective owners and are not affiliated with MyCrystalScore.</p>
+        <p data-cso hidden>
+          <span lang="es">Organización de Servicios de Crédito registrada en Texas, núm.</span>
+          <span lang="en">Registered Texas Credit Services Organization No.</span>
+          <span data-cso-num></span>
+        </p>
+        <p>© <span data-year>2026</span> <span data-legal-name>My Crystal Score</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

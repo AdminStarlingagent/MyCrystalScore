@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="es" data-lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Empieza hoy | MyCrystalScore</title>
+  <meta name="mcs-title-es" content="Empieza hoy | MyCrystalScore">
+  <meta name="mcs-title-en" content="Get started | MyCrystalScore">
+  <meta name="description" content="Cuéntanos tu meta de crédito y te llamamos. Toma dos minutos.">
+  <meta name="theme-color" content="#1D1838">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="assets/js/config.js"></script>
+  <script>
+    (function () {
+      try {
+        var p = new URLSearchParams(location.search).get('lang');
+        var l = p || localStorage.getItem('mcs-lang') || (window.MCS_CONFIG && MCS_CONFIG.defaultLang) || 'es';
+        if (p) localStorage.setItem('mcs-lang', p);
+        l = l === 'en' ? 'en' : 'es';
+        document.documentElement.setAttribute('data-lang', l);
+        document.documentElement.lang = l;
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main"><span lang="es">Saltar al contenido</span><span lang="en">Skip to content</span></a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/img/logo.svg" alt="" width="28" height="32">
+        <span>MyCrystalScore</span>
+      </a>
+      <div class="header-actions" style="margin-left:auto">
+        <button class="lang-toggle" type="button" data-lang-toggle data-aria-es="Ver el sitio en inglés" data-aria-en="Ver el sitio en español">
+          <span lang="es">EN</span><span lang="en">ES</span>
+        </button>
+        <a class="link-login" href="#" data-portal hidden><span lang="es">Entrar</span><span lang="en">Log in</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="wrap">
+    <div class="page-head">
+      <h1><span lang="es">Cuéntanos tu meta</span><span lang="en">Tell us your goal</span></h1>
+      <p class="section-lede">
+        <span lang="es">Toma dos minutos. Te llamamos para revisar tu situación y explicarte el siguiente paso.</span>
+        <span lang="en">It takes two minutes. We'll call you to look at your situation and explain the next step.</span>
+      </p>
+    </div>
+
+    <div class="signup-grid">
+      <div class="form-card">
+        <form id="signup" novalidate>
+          <!-- Honeypot: real people never see or fill this -->
+          <div class="hp" aria-hidden="true">
+            <label for="company">Company</label>
+            <input type="text" id="company" name="company" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="row-2">
+            <div class="field" data-field="first_name">
+              <label for="first_name"><span lang="es">Nombre</span><span lang="en">First name</span></label>
+              <input id="first_name" name="first_name" type="text" autocomplete="given-name" required>
+              <p class="field-error" hidden></p>
+            </div>
+            <div class="field" data-field="last_name">
+              <label for="last_name"><span lang="es">Apellido</span><span lang="en">Last name</span></label>
+              <input id="last_name" name="last_name" type="text" autocomplete="family-name" required>
+              <p class="field-error" hidden></p>
+            </div>
+          </div>
+
+          <div class="row-2">
+            <div class="field" data-field="phone">
+              <label for="phone"><span lang="es">Teléfono celular</span><span lang="en">Mobile phone</span></label>
+              <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="(832) 555-0123" required>
+              <p class="field-error" hidden></p>
+            </div>
+            <div class="field" data-field="email">
+              <label for="email"><span lang="es">Correo electrónico</span><span lang="en">Email</span></label>
+              <input id="email" name="email" type="email" inputmode="email" autocomplete="email" required>
+              <p class="field-error" hidden></p>
+            </div>
+          </div>
+
+          <fieldset class="field" data-field="goal">
+            <legend class="group-label"><span lang="es">¿Qué quieres lograr?</span><span lang="en">What do you want to do?</span></legend>
+            <div class="pills">
+              <input type="radio" name="goal" id="goal-home" value="comprar-casa"><label for="goal-home"><span lang="es">Comprar casa</span><span lang="en">Buy a home</span></label>
+              <input type="radio" name="goal" id="goal-score" value="subir-puntaje"><label for="goal-score"><span lang="es">Subir mi puntaje</span><span lang="en">Raise my score</span></label>
+              <input type="radio" name="goal" id="goal-errors" value="quitar-errores"><label for="goal-errors"><span lang="es">Corregir errores en mi reporte</span><span lang="en">Fix errors on my report</span></label>
+              <input type="radio" name="goal" id="goal-start" value="empezar-credito"><label for="goal-start"><span lang="es">Empezar mi crédito</span><span lang="en">Start building credit</span></label>
+            </div>
+            <p class="field-error" hidden></p>
+          </fieldset>
+
+          <div class="row-2">
+            <div class="field" data-field="timeline">
+              <label for="timeline"><span lang="es">¿Para cuándo?</span><span lang="en">When?</span></label>
+              <select id="timeline" name="timeline">
+                <option value="lo-antes-posible" data-es="Lo antes posible" data-en="As soon as possible">Lo antes posible</option>
+                <option value="3-6-meses" data-es="En 3 a 6 meses" data-en="In 3 to 6 months">En 3 a 6 meses</option>
+                <option value="6-12-meses" data-es="En 6 a 12 meses" data-en="In 6 to 12 months">En 6 a 12 meses</option>
+                <option value="explorando" data-es="Solo estoy explorando" data-en="Just exploring">Solo estoy explorando</option>
+              </select>
+            </div>
+            <div class="field" data-field="plan">
+              <label for="plan"><span lang="es">Plan que te interesa</span><span lang="en">Plan you're interested in</span></label>
+              <select id="plan" name="plan">
+                <option value="no-se" data-es="Aún no sé" data-en="Not sure yet">Aún no sé</option>
+                <option value="monitoreo" data-es="Monitoreo" data-en="Monitoring">Monitoreo</option>
+                <option value="reparacion" data-es="Reparación" data-en="Credit repair">Reparación</option>
+                <option value="pareja" data-es="Pareja" data-en="Couples">Pareja</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field" data-field="heard_from">
+            <label for="heard_from"><span lang="es">¿Cómo nos conociste?</span><span lang="en">How did you hear about us?</span> <span class="optional"><span lang="es">(opcional)</span><span lang="en">(optional)</span></span></label>
+            <select id="heard_from" name="heard_from">
+              <option value="" data-es="Elige una opción" data-en="Choose one">Elige una opción</option>
+              <option value="tiktok">TikTok</option>
+              <option value="facebook">Facebook</option>
+              <option value="instagram">Instagram</option>
+              <option value="google">Google</option>
+              <option value="recomendacion" data-es="Me lo recomendaron" data-en="Someone referred me">Me lo recomendaron</option>
+              <option value="otro" data-es="Otro" data-en="Other">Otro</option>
+            </select>
+          </div>
+
+          <label class="consent" for="sms_consent">
+            <input type="checkbox" id="sms_consent" name="sms_consent">
+            <span>
+              <span lang="es" data-consent-text>Acepto recibir llamadas y mensajes de texto de MyCrystalScore al número que proporcioné, incluso con sistemas automatizados, sobre mi solicitud y nuestros servicios. Dar mi consentimiento no es condición de compra. La frecuencia de los mensajes varía. Pueden aplicar tarifas de mensajes y datos. Responde STOP para cancelar o HELP para recibir ayuda.</span>
+              <span lang="en" data-consent-text>I agree to receive calls and text messages from MyCrystalScore at the number I provided, including by automated systems, about my request and our services. Consent is not a condition of purchase. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help.</span>
+            </span>
+          </label>
+
+          <button class="btn btn-primary" type="submit" data-submit>
+            <span data-es="Enviar mi solicitud" data-en="Send my request">Enviar mi solicitud</span>
+          </button>
+          <p class="form-note">
+            <span lang="es">Al enviar, aceptas nuestra <a href="legal.html#privacidad">Política de privacidad</a> y nuestros <a href="legal.html#terminos">Términos</a>.</span>
+            <span lang="en">By sending, you agree to our <a href="legal.html#privacidad">Privacy policy</a> and <a href="legal.html#terminos">Terms</a>.</span>
+          </p>
+          <div class="form-alert" data-form-alert role="alert" hidden></div>
+        </form>
+
+        <div class="success-panel" data-success hidden tabindex="-1">
+          <div class="gem" data-gem-static="1"></div>
+          <h2 data-success-title></h2>
+          <p data-success-body></p>
+          <div class="success-actions">
+            <a class="btn btn-primary" data-monitoring-link href="#" hidden><span lang="es">Activar mi monitoreo</span><span lang="en">Turn on my monitoring</span></a>
+            <a class="btn btn-ghost" href="index.html"><span lang="es">Volver al inicio</span><span lang="en">Back to home</span></a>
+          </div>
+        </div>
+      </div>
+
+      <aside class="side-panel">
+        <h2><span lang="es">Qué pasa después</span><span lang="en">What happens next</span></h2>
+        <ol>
+          <li><span><span lang="es">Te llamamos para conocer tu meta y tu situación.</span><span lang="en">We call you to learn your goal and your situation.</span></span></li>
+          <li><span><span lang="es">Activas tu monitoreo y revisamos tus reportes juntos.</span><span lang="en">You turn on monitoring and we review your reports together.</span></span></li>
+          <li><span><span lang="es">Si decides seguir, firmas un contrato por escrito que explica cada servicio.</span><span lang="en">If you decide to continue, you sign a written contract that explains each service.</span></span></li>
+        </ol>
+        <p class="note">
+          <span lang="es">Este formulario nunca te pide tu número de Seguro Social ni tu ITIN.</span>
+          <span lang="en">This form never asks for your Social Security number or ITIN.</span>
+          <span data-contact><br><span lang="es">¿Prefieres llamar?</span><span lang="en">Rather call?</span> <a data-phone href="#"></a></span>
+        </p>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-legal" style="padding-top:0">
+        <p lang="es">MyCrystalScore ofrece servicios de reparación y monitoreo de crédito. No somos un buró de crédito ni un prestamista. Tienes derecho a disputar información inexacta directamente con los burós, sin costo. Los resultados varían y no garantizamos aumentos de puntaje.</p>
+        <p lang="en">MyCrystalScore provides credit repair and credit monitoring services. We are not a credit bureau or a lender. You have the right to dispute inaccurate information directly with the bureaus at no cost. Results vary and we don't guarantee score increases.</p>
+        <p data-cso hidden>
+          <span lang="es">Organización de Servicios de Crédito registrada en Texas, núm.</span>
+          <span lang="en">Registered Texas Credit Services Organization No.</span>
+          <span data-cso-num></span>
+        </p>
+        <p>© <span data-year>2026</span> <span data-legal-name>My Crystal Score</span></p>
+        <p><a href="legal.html"><span lang="es">Privacidad, términos y tus derechos de crédito</span><span lang="en">Privacy, terms, and your credit rights</span></a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/signup.js"></script>
+</body>
+</html>

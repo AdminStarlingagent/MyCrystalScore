@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 270" role="img" aria-label="MyCrystalScore">
+  <defs>
+    <linearGradient id="iri" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7FE3E8"/>
+      <stop offset=".48" stop-color="#9B8BE0"/>
+      <stop offset="1" stop-color="#F2A7C8"/>
+    </linearGradient>
+  </defs>
+  <g stroke="none">
+    <polygon points="15,95 65,40 85,95" fill="url(#iri)"/><polygon points="15,95 65,40 85,95" fill="#fff" fill-opacity=".28"/>
+    <polygon points="65,40 120,40 85,95" fill="url(#iri)"/><polygon points="65,40 120,40 85,95" fill="#fff" fill-opacity=".06"/>
+    <polygon points="120,40 155,95 85,95" fill="url(#iri)"/><polygon points="120,40 155,95 85,95" fill="#fff" fill-opacity=".4"/>
+    <polygon points="120,40 175,40 155,95" fill="url(#iri)"/><polygon points="120,40 175,40 155,95" fill="#fff" fill-opacity=".14"/>
+    <polygon points="175,40 225,95 155,95" fill="url(#iri)"/><polygon points="175,40 225,95 155,95" fill="#1D1838" fill-opacity=".16"/>
+    <polygon points="15,95 85,95 120,250" fill="url(#iri)"/><polygon points="15,95 85,95 120,250" fill="#fff" fill-opacity=".18"/>
+    <polygon points="85,95 155,95 120,250" fill="url(#iri)"/><polygon points="85,95 155,95 120,250" fill="#fff" fill-opacity=".44"/>
+    <polygon points="155,95 225,95 120,250" fill="url(#iri)"/><polygon points="155,95 225,95 120,250" fill="#1D1838" fill-opacity=".24"/>
+  </g>
+  <g fill="none" stroke="#1D1838" stroke-linejoin="round">
+    <path d="M15 95H225M65 40L85 95L120 250M120 40L85 95M120 40L155 95L120 250M175 40L155 95" stroke-width="7" stroke-opacity=".55"/>
+    <polygon points="65,40 175,40 225,95 120,250 15,95" stroke-width="12"/>
+  </g>
+</svg>
