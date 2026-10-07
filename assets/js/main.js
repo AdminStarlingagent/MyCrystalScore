@@ -61,18 +61,31 @@
   /* ---------- Settings from config.js ---------- */
   var digits = function (s) { return String(s || '').replace(/\D/g, '').slice(-10); };
 
+  // Pricing: per-session price × number of sessions = program total
+  var P = C.prices || {};
+  var nSessions = parseInt(P.sessions, 10) || 4;
+  var money = function (v) {
+    var n = Number(v);
+    return isFinite(n) ? n.toLocaleString('en-US', { maximumFractionDigits: 2 }) : String(v);
+  };
+  var priceValues = {
+    session: P.session ? money(P.session) : '',
+    sessions: String(nSessions),
+    total: P.session ? money(Number(P.session) * nSessions) : '',
+    coupleSession: P.coupleSession ? money(P.coupleSession) : '',
+    coupleTotal: P.coupleSession ? money(Number(P.coupleSession) * nSessions) : ''
+  };
   document.querySelectorAll('[data-price]').forEach(function (el) {
-    var v = C.prices && C.prices[el.getAttribute('data-price')];
+    var v = priceValues[el.getAttribute('data-price')];
     if (v) el.textContent = v;
   });
+  // Couples offer only appears when a couples price is set
+  document.querySelectorAll('[data-couples]').forEach(function (el) { el.hidden = !P.coupleSession; });
+  document.querySelectorAll('option[data-couples-option]').forEach(function (opt) { if (!P.coupleSession) opt.remove(); });
+
   document.querySelectorAll('[data-portal]').forEach(function (el) {
     if (C.portalUrl) { el.href = C.portalUrl; el.hidden = false; }
   });
-  if (C.monitoringUrl) {
-    document.querySelectorAll('[data-plan-link="monitoring"], [data-monitoring-link]').forEach(function (el) {
-      el.href = C.monitoringUrl; el.target = '_blank'; el.rel = 'noopener'; el.hidden = false;
-    });
-  }
   document.querySelectorAll('[data-phone]').forEach(function (el) {
     if (C.phone) {
       el.textContent = C.phone;

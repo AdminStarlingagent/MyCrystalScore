@@ -1,14 +1,14 @@
 # MyCrystalScore — website
 
-Static site (HTML/CSS/JS, no build step) for **mycrystalscore.com**, built for GitHub Pages.
+Static site (HTML/CSS/JS, no build step) for **mycrystalscore.com** — credit coaching (4 sessions, each billed after it's delivered), built for GitHub Pages.
 Spanish by default with an English toggle (top right). All settings live in one file: `assets/js/config.js`.
 
 ```
-index.html               Home: hero, how it works, score simulator, plans, FAQ
+index.html               Home: hero, the 4 sessions, score simulator, pricing, FAQ
 signup.html              Lead form (no SSN/ITIN collected)
 legal.html               Privacy, terms, credit rights (draft — attorney review)
 404.html                 Not-found page
-assets/js/config.js      ← EDIT THIS: prices, phone, portal link, form destinations
+assets/js/config.js      ← EDIT THIS: session price, phone, form destinations
 assets/js/main.js        Language toggle, crystal graphic, simulator
 assets/js/signup.js      Form validation + sending
 assets/css/styles.css    All styles
@@ -22,10 +22,11 @@ supabase-mcs-leads.sql   Optional lead table (run in Supabase SQL editor)
 
 | Setting | What it does |
 |---|---|
-| `prices` | Monthly prices on the Plans section. **Placeholders — set yours.** |
+| `prices.session` | Price per coaching session (default `300`). |
+| `prices.sessions` | Sessions in the program (default `4`). The site shows the total automatically ($1,200). |
+| `prices.coupleSession` | Per-session price for couples, e.g. `450`. Empty = the Couples card is hidden. |
 | `phone`, `email` | Shown in the FAQ, footer, and sign-up page. Empty = hidden. |
-| `portalUrl` | "Log in" button → your client portal (e.g. Credit Repair Cloud). Empty = hidden. |
-| `monitoringUrl` | Your monitoring provider's enrollment/affiliate link. Empty = Monitoring plan goes to the form. |
+| `portalUrl` | Optional "Log in" button. Empty = hidden. |
 | `webhookUrl` | n8n webhook that receives each lead (see step 4). |
 | `supabaseUrl`, `supabaseAnonKey` | Optional second copy of every lead in Supabase. |
 | `txCsoRegistration` | Your Texas Credit Services Organization registration number → shown in the footer. |
@@ -37,10 +38,10 @@ supabase-mcs-leads.sql   Optional lead table (run in Supabase SQL editor)
 
 ## 2. Put it on GitHub Pages
 
-1. Create a new **public** repo, e.g. `AdminStarlingagent/mycrystalscore`.
-2. Upload everything in this folder to the repo root (including the hidden `.nojekyll` file).
+1. Repo: **`AdminStarlingagent/MyCrystalScore`** (already created and pushed).
+2. To update: upload the changed files to the repo root (drag and drop on GitHub, or push with git).
 3. Repo → **Settings → Pages** → Source: *Deploy from a branch* → Branch: `main`, folder `/ (root)` → Save.
-4. In a minute or two the site is live at `https://adminstarlingagent.github.io/mycrystalscore/` — check it there first.
+4. In a minute or two the site is live at `https://adminstarlingagent.github.io/MyCrystalScore/` — check it there first.
 5. Same Pages screen → **Custom domain** → type `mycrystalscore.com` → Save. (GitHub creates the `CNAME` file for you.) Then do step 3 below.
 
 ---
@@ -105,12 +106,22 @@ The form posts these fields: `first_name, last_name, phone (+1XXXXXXXXXX), email
 
 ---
 
-## 5. Before you launch
+## 5. Billing (QuickBooks)
 
-- [ ] Real prices in `config.js`, and the plan features in `index.html` match what you actually deliver.
-- [ ] Texas Credit Services Organization registration + bond on file with the Texas Secretary of State; number added to `txCsoRegistration`.
-- [ ] Billing matches the site: no credit-repair fees collected before the work is performed (CROA), written contract, 3-business-day cancellation.
+The business model is **credit coaching, billed after each session** — there are no pay buttons on the site on purpose.
+
+- QuickBooks product: **"Sesión de asesoría de crédito / Credit coaching session"**, $300, service, non-taxable.
+- After each session: create an invoice for that client with one line of that product (edit the line description to "Sesión 1 de 4", "Sesión 2 de 4"…) and send it. The client pays from the invoice.
+- Deactivate the old reusable payment links in QuickBooks (Sales → Payment links). They all charge up front: $200 monthly plans (2), $1,200 "One Time High…", $1,200 "GOLD PACKAGE", $1,500 and $1,800 "HIGH Repo Evictions Judgements…", $120 "Client Report", $1,200 "Servicios Financieros / Financial Services".
+
+---
+
+## 6. Before you launch
+
+- [ ] Texas Credit Services Organization registration + bond on file with the Texas Secretary of State; number added to `txCsoRegistration`. (Paid advice about improving credit counts as a CSO under Texas law and federal CROA.)
+- [ ] Written client agreement that lists each session as its own service and price, with the 3-business-day cancellation notice — attorney-reviewed.
+- [ ] Confirm with Intuit (or a processor that accepts credit-services businesses) that you can take card/ACH payments for this service. Intuit's Acceptable Use Policy lists "Credit Repair, Counseling and Protection Services" as restricted.
 - [ ] `legal.html` reviewed by an attorney.
-- [ ] Monitoring provider link (`monitoringUrl`) and client portal link (`portalUrl`) set.
+- [ ] Old prepaid QuickBooks payment links deactivated.
 - [ ] Testimonials: only add real ones, with the client's written permission.
 - [ ] Submit a test lead and confirm it lands in FUB (and Supabase if used).

@@ -377,6 +377,41 @@ html[data-lang="en"] body [lang="es"] { display: none !important; }
   .plan-for { min-height: 0; }
 }
 
+/* Pricing layout: program card(s) + how-billing-works panel */
+.pricing-grid {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.5rem 2.5rem; align-items: start;
+  max-width: 62rem;
+}
+.pricing-grid:has(.plan[data-couples]:not([hidden])) { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: none; }
+.pricing-grid .plan-featured { transform: none; }
+.price-total { margin: -0.6rem 0 1.4rem; font-size: 1rem; color: var(--ink-3); }
+.plan-featured .price-total { color: rgba(255, 255, 255, .72); }
+.price .per { white-space: nowrap; }
+.billing-steps { padding: .5rem 0 0; }
+.billing-steps h3 { font-size: 1.25rem; margin-bottom: 1.1rem; }
+.billing-steps ol { list-style: none; padding: 0; margin: 0; counter-reset: b; display: grid; gap: 1.1rem; }
+.billing-steps li { counter-increment: b; display: grid; grid-template-columns: 34px 1fr; gap: .9rem; align-items: start; color: var(--ink-2); font-size: 1.02rem; }
+.billing-steps li::before {
+  content: counter(b); display: grid; place-items: center; width: 34px; height: 34px;
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+  background: var(--ink); color: #fff; font-family: var(--font-display); font-weight: 600; font-size: .85rem;
+}
+@media (max-width: 900px) {
+  .pricing-grid, .pricing-grid:has(.plan[data-couples]:not([hidden])) { grid-template-columns: 1fr; max-width: 32rem; }
+}
+
+/* "Your plan" checklist mock */
+.todo { list-style: none; margin: 0; padding: 0; }
+.todo li { display: grid; grid-template-columns: 22px 1fr; gap: .85rem; align-items: start; padding: .95rem .5rem; border-top: 1px solid var(--line); font-size: .98rem; }
+.todo .box { width: 20px; height: 20px; margin-top: .15rem; border: 2px solid var(--cloud); border-radius: 6px; position: relative; }
+.todo li.done .box { background: var(--aqua-deep); border-color: var(--aqua-deep); }
+.todo li.done .box::after {
+  content: ""; position: absolute; left: 5px; top: 1px; width: 5px; height: 10px;
+  border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg);
+}
+.todo li.done > span:last-child { color: var(--ink-3); text-decoration: line-through; text-decoration-color: rgba(29, 24, 56, .35); }
+.todo-progress { margin: 0; padding: .9rem .5rem .6rem; border-top: 1px solid var(--line); font-size: .88rem; color: var(--ink-3); }
+
 /* ---------- FAQ ---------- */
 .faq-grid { display: grid; grid-template-columns: .7fr 1.3fr; gap: clamp(2rem, 6vw, 5rem); align-items: start; }
 .faq-aside p { color: var(--ink-2); }

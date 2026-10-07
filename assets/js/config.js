@@ -10,19 +10,16 @@ window.MCS_CONFIG = {
   phone: "(832) 808-6483",
   email: "",                            // e.g. "hola@mycrystalscore.com"
 
-  // Monthly prices in USD — PLACEHOLDERS, set your real prices before launch
+  // Coaching program pricing (USD). Each session is invoiced AFTER it is delivered.
+  // The site shows the per-session price and the program total (session × sessions).
   prices: {
-    monitoring: "29.99",
-    repair: "99",
-    couple: "169"
+    session: "300",                     // individual, per session
+    sessions: "4",                      // sessions in the program
+    coupleSession: ""                   // per session for couples — e.g. "450" to show a Couples card; "" hides it
   },
 
-  // "Log in" button → your client portal (e.g. Credit Repair Cloud client portal URL)
+  // Optional "Log in" button (e.g. a client portal). Empty = hidden.
   portalUrl: "",
-
-  // Monitoring enrollment link from your monitoring provider (affiliate link).
-  // If empty, the Monitoring plan button goes to the sign-up form instead.
-  monitoringUrl: "",
 
   // Where sign-up form leads are sent — fill in at least ONE of these
   webhookUrl: "",                        // n8n webhook, e.g. "https://starlingagent.app.n8n.cloud/webhook/mcs-lead"
