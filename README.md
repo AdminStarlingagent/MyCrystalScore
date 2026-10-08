@@ -29,12 +29,13 @@ supabase-mcs-leads.sql   Optional lead + signed-agreement tables (run in Supabas
 | `prices.coupleSession` | Per-session price for couples, e.g. `450`. Empty = the Couples card is hidden. |
 | `phone`, `email` | Shown in the FAQ, footer, and sign-up page. Empty = hidden. |
 | `portalUrl` | Optional "Log in" button. Empty = hidden. |
+| `web3formsKey` | Web3Forms access key — emails you every lead and every signed agreement (see step 4). |
 | `webhookUrl` | n8n webhook that receives each lead (see step 4). |
 | `supabaseUrl`, `supabaseAnonKey` | Optional second copy of every lead in Supabase. |
 | `txCsoRegistration` | Your Texas Credit Services Organization registration number → shown in the footer. |
 | `realEstateUrl` | The "Is your goal a home?" band links here. Empty = band hidden. |
 
-**At least one of `webhookUrl` or Supabase must be filled in**, or the form shows "not connected yet — call us" instead of saving the lead.
+**At least one of `web3formsKey`, `webhookUrl`, or Supabase must be filled in**, or the form shows "not connected yet — call us" instead of saving the lead.
 
 ---
 
@@ -80,7 +81,17 @@ Then:
 
 ---
 
-## 4. Getting leads into Follow Up Boss
+## 4. Capturing leads and signed agreements
+
+**Web3Forms (simplest — email):**
+1. Go to web3forms.com, enter the email that should receive submissions, and click *Create Access Key*. The key arrives by email.
+2. Paste it into `web3formsKey` in `config.js`. That's it.
+- Lead emails arrive as *"Nuevo lead MyCrystalScore: [name]"* with readable fields (phone, goal, timing, SMS consent text, TikTok/Facebook campaign). Hit Reply to answer the client directly.
+- Agreement emails arrive as *"Acuerdo firmado: [name] (cancela hasta [date])"* with every signature timestamp, the SHA-256 fingerprint, and the full signed text. **Keep these emails at least 2 years** (make a Gmail filter/label).
+- Free plan: 250 submissions a month, delivered by email; Web3Forms' own copy is only kept 30 days, so your inbox is the record. The access key is meant to be public — it's fine in this repo.
+- Web3Forms can't push into Follow Up Boss on the free plan. Add the n8n webhook below for that; both can run at the same time.
+
+## 4b. Getting leads into Follow Up Boss (n8n)
 
 The form posts these fields: `first_name, last_name, phone (+1XXXXXXXXXX), email, goal, timeline, plan, heard_from, lang, sms_consent, consent_text, utm (JSON text), page, referrer, user_agent, submitted_at, source`.
 

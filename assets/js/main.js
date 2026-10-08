@@ -386,5 +386,20 @@
     update();
   }
 
-  window.MCS = { lang: lang, t: t, setLang: setLang, createGem: createGem };
+  /* ---------- Web3Forms: emails a submission to you ---------- */
+  function web3forms(fields) {
+    var body = Object.assign({ access_key: C.web3formsKey, from_name: 'MyCrystalScore.com' }, fields);
+    return fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(body)
+    }).then(function (res) {
+      return res.json().catch(function () { return {}; }).then(function (j) {
+        if (!res.ok || !j.success) throw new Error('Web3Forms: ' + (j.message || res.status));
+        return j;
+      });
+    });
+  }
+
+  window.MCS = { lang: lang, t: t, setLang: setLang, createGem: createGem, web3forms: web3forms };
 })();

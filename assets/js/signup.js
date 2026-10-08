@@ -171,6 +171,31 @@
     );
   }
 
+  // Readable labels for the email Web3Forms sends you
+  var GOALS = { 'comprar-casa': 'Comprar casa', 'subir-puntaje': 'Subir su puntaje', 'quitar-errores': 'Corregir errores', 'empezar-credito': 'Empezar su crédito' };
+  function sendWeb3Forms(data) {
+    var name = data.first_name + ' ' + data.last_name;
+    var opt = function (sel) { var o = form[sel].options[form[sel].selectedIndex]; return o ? (o.getAttribute('data-es') || o.textContent) : ''; };
+    var utm = Object.keys(data.utm || {}).map(function (k) { return k + '=' + data.utm[k]; }).join(', ');
+    return M.web3forms({
+      subject: 'Nuevo lead MyCrystalScore: ' + name,
+      replyto: data.email,
+      'Nombre': name,
+      'Teléfono': form.phone.value,
+      'Correo': data.email,
+      'Meta': GOALS[data.goal] || data.goal,
+      'Para cuándo': opt('timeline'),
+      'Le interesa': opt('plan'),
+      'Cómo nos conoció': data.heard_from ? opt('heard_from') : '',
+      'Idioma': data.lang === 'en' ? 'Inglés' : 'Español',
+      'Consentimiento SMS': data.sms_consent ? 'Sí' : 'No',
+      'Texto del consentimiento': data.consent_text || '',
+      'Campaña (UTM)': utm,
+      'Página': data.page,
+      'Enviado': new Date(data.submitted_at).toLocaleString('es-US', { timeZone: 'America/Chicago' }) + ' (CT)'
+    });
+  }
+
   function sendSupabase(data) {
     var row = Object.assign({}, data);
     return fetch(C.supabaseUrl.replace(/\/$/, '') + '/rest/v1/' + (C.supabaseTable || 'mcs_leads'), {
@@ -218,11 +243,12 @@
     if (form.company.value) { showSuccess(data); return; }
 
     var jobs = [];
+    if (C.web3formsKey) jobs.push(sendWeb3Forms(data));
     if (C.webhookUrl) jobs.push(sendWebhook(data));
     if (C.supabaseUrl && C.supabaseAnonKey) jobs.push(sendSupabase(data));
 
     if (!jobs.length) {
-      console.error('MyCrystalScore: no webhookUrl or Supabase settings in assets/js/config.js — lead was NOT saved.', data);
+      console.error('MyCrystalScore: no web3formsKey, webhookUrl, or Supabase settings in assets/js/config.js — lead was NOT saved.', data);
       showAlert(MSG.notConnected);
       return;
     }

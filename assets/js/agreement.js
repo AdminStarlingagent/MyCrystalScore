@@ -53,7 +53,7 @@
     need(S.company, 'agreement.surety.company'); need(S.companyAddress, 'agreement.surety.companyAddress');
     need(S.bondNumber, 'agreement.surety.bondNumber');
   }
-  if (!C.webhookUrl && !(C.supabaseUrl && C.supabaseAnonKey)) missing.push('webhookUrl / supabaseUrl + supabaseAnonKey');
+  if (!C.web3formsKey && !C.webhookUrl && !(C.supabaseUrl && C.supabaseAnonKey)) missing.push('web3formsKey / webhookUrl / supabaseUrl + supabaseAnonKey');
 
   if (missing.length && !preview) {
     $('[data-unavailable]').hidden = false;
@@ -283,8 +283,53 @@
     } catch (e) { return ''; }
   }
 
-  function send(payload) {
+  // Plain-text version of the signed package, for the Web3Forms email
+  function toText(html) {
+    var t = html.replace(/<style[\s\S]*?<\/style>/gi, '')
+      .replace(/<br\s*\/?>/gi, '\n')
+      .replace(/<\/(p|h[1-4]|li|div|ol|ul)>/gi, '\n')
+      .replace(/<li[^>]*>/gi, '- ')
+      .replace(/<[^>]+>/g, '');
+    var ta = document.createElement('textarea');
+    ta.innerHTML = t;
+    return ta.value.replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
+  }
+
+  function sendWeb3Forms(payload, pkg) {
+    var stamp = function (iso) { return fmtStamp(iso, 'es'); };
+    var fields = {
+      subject: 'Acuerdo firmado: ' + payload.full_name + ' (cancela hasta ' + fmtDate(payload.cancel_deadline, 'es') + ')',
+      replyto: payload.email,
+      'Cliente': payload.full_name,
+      'Correo': payload.email,
+      'Teléfono': payload.phone,
+      'Dirección': payload.address,
+      'Programa': payload.plan + (payload.co_client_name ? ' (co-cliente: ' + payload.co_client_name + ')' : ''),
+      'Precio por sesión': money(payload.session_price),
+      'Total': money(payload.total) + ' (' + payload.sessions + ' sesiones)',
+      'Idioma firmado': payload.lang === 'en' ? 'Inglés' : 'Español',
+      'Consentimiento electrónico': stamp(payload.esign_consent_at),
+      'Acuse Documento 1 (federal)': payload.federal_ack_name + ' — ' + stamp(payload.federal_ack_at),
+      'Acuse Documento 2 (Texas)': payload.texas_ack_name + ' — ' + stamp(payload.texas_ack_at),
+      'Firma del contrato': payload.contract_signed_name + ' — ' + stamp(payload.contract_signed_at),
+      'Fecha límite para cancelar': fmtDate(payload.cancel_deadline, 'es') + ', medianoche',
+      'Primera sesión a partir del': fmtDate(payload.earliest_session, 'es'),
+      'Versión del acuerdo': payload.agreement_version,
+      'Huella SHA-256': payload.doc_sha256,
+      'Documento firmado (texto)': toText(pkg)
+    };
+    // If the full text is too large for Web3Forms, retry with the summary only
+    return M.web3forms(fields).catch(function (err) {
+      console.warn(err);
+      delete fields['Documento firmado (texto)'];
+      fields['Nota'] = 'El texto completo no se pudo incluir en este correo. Pide al cliente su copia descargada o revisa Supabase.';
+      return M.web3forms(fields);
+    });
+  }
+
+  function send(payload, pkg) {
     var jobs = [];
+    if (C.web3formsKey) jobs.push(sendWeb3Forms(payload, pkg));
     if (C.webhookUrl) {
       var body = new URLSearchParams();
       Object.keys(payload).forEach(function (k) {
@@ -370,7 +415,7 @@
       utm: utm, user_agent: navigator.userAgent, page: location.href, source: 'mycrystalscore.com'
     };
 
-    var ok = preview ? true : await send(payload);
+    var ok = preview ? true : await send(payload, pkg);
     btn.disabled = false;
     if (!ok) {
       alertBox.innerHTML = '';

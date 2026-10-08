@@ -21,7 +21,8 @@ window.MCS_CONFIG = {
   // Optional "Log in" button (e.g. a client portal). Empty = hidden.
   portalUrl: "",
 
-  // Where sign-up form leads are sent — fill in at least ONE of these
+  // Where sign-up form leads and signed agreements are sent — fill in at least ONE of these
+  web3formsKey: "",                      // Web3Forms access key (free at web3forms.com) — emails each submission to you
   webhookUrl: "",                        // n8n webhook, e.g. "https://starlingagent.app.n8n.cloud/webhook/mcs-lead"
   supabaseUrl: "",                       // e.g. "https://abcd1234.supabase.co"
   supabaseAnonKey: "",                   // the public "anon" key (safe with the insert-only policy in supabase-mcs-leads.sql)
