@@ -1,6 +1,6 @@
 # MyCrystalScore — website
 
-Static site (HTML/CSS/JS, no build step) for **mycrystalscore.com** — credit coaching (4 sessions, each billed after it's delivered), built for GitHub Pages.
+Static site (HTML/CSS/JS, no build step) for **mycrystalscore.com** — credit coaching ($1,200 program of 4 sessions, billed once after the last session), built for GitHub Pages.
 Spanish by default with an English toggle (top right). All settings live in one file: `assets/js/config.js`.
 
 ```
@@ -9,7 +9,7 @@ signup.html              Lead form (no SSN/ITIN collected)
 agreement.html           Client agreement: disclosures, e-sign, contract, cancellation forms
 legal.html               Privacy, terms, credit rights (draft — attorney review)
 404.html                 Not-found page
-assets/js/config.js      ← EDIT THIS: session price, phone, form destinations
+assets/js/config.js      ← EDIT THIS: program price, phone, form destinations
 assets/js/main.js        Language toggle, crystal graphic, simulator
 assets/js/signup.js      Form validation + sending
 assets/js/agreement*.js  Agreement flow + legal texts (statutory text is verbatim — don't edit)
@@ -24,9 +24,9 @@ supabase-mcs-leads.sql   Optional lead + signed-agreement tables (run in Supabas
 
 | Setting | What it does |
 |---|---|
-| `prices.session` | Price per coaching session (default `300`). |
-| `prices.sessions` | Sessions in the program (default `4`). The site shows the total automatically ($1,200). |
-| `prices.coupleSession` | Per-session price for couples, e.g. `450`. Empty = the Couples card is hidden. |
+| `prices.program` | Program price (default `1200`), billed once after the last session. |
+| `prices.sessions` | Sessions in the program (default `4`). Early-exit price per session = program ÷ sessions ($300). |
+| `prices.coupleProgram` | Couples program price, e.g. `1800`. Empty = the Couples card is hidden. |
 | `phone`, `email` | Shown in the FAQ, footer, and sign-up page. Empty = hidden. |
 | `portalUrl` | Optional "Log in" button. Empty = hidden. |
 | `web3formsKey` | Web3Forms access key — emails you every lead and every signed agreement (see step 4). |
@@ -121,17 +121,18 @@ The form posts these fields: `first_name, last_name, phone (+1XXXXXXXXXX), email
 
 ## 5. Billing (QuickBooks)
 
-The business model is **credit coaching, billed after each session** — there are no pay buttons on the site on purpose.
+The business model is **credit coaching, billed once after the last session** — there are no pay buttons on the site on purpose.
 
-- QuickBooks product: **"Sesión de asesoría de crédito / Credit coaching session"**, $300, service, non-taxable.
-- After each session: create an invoice for that client with one line of that product (edit the line description to "Sesión 1 de 4", "Sesión 2 de 4"…) and send it. The client pays from the invoice.
+- QuickBooks product: **"Programa de asesoría de crédito / Credit coaching program"**, $1,200, service, non-taxable.
+- After the client's **4th session**: create one invoice with one line of that product and send it. The client pays from the invoice. Never invoice before the last session.
+- If a program ends early (client or you stop it): invoice the **"Sesión de asesoría de crédito / Credit coaching session"** product ($300) × the number of sessions delivered, once the program has ended.
 - Deactivate the old reusable payment links in QuickBooks (Sales → Payment links). They all charge up front: $200 monthly plans (2), $1,200 "One Time High…", $1,200 "GOLD PACKAGE", $1,500 and $1,800 "HIGH Repo Evictions Judgements…", $120 "Client Report", $1,200 "Servicios Financieros / Financial Services".
 
 ---
 
 ## 6. Client agreement (agreement.html)
 
-Clients sign here **before the first session** — and since every session is invoiced after it's delivered, they always sign before they pay.
+Clients sign here **before the first session** — and since the program is invoiced after the last session, they always sign before they pay.
 
 **Send each client a personal link** (from FUB, SMS, or email) so their info is pre-filled:
 
@@ -154,7 +155,7 @@ What the page does, in the order the law requires:
 - Every signature is sent to your webhook (with `type=agreement`) and/or the `mcs_agreements` Supabase table, including the full signed document (`doc_html`) and a SHA-256 fingerprint. **Keep these at least 2 years.** In n8n, branch on `type` (`lead` vs `agreement`), email the client a copy, and add a note in FUB. The n8n webhook can also log the client's IP from request headers.
 - The page **will not allow signing** until these are filled in `config.js`: `agreement.legalEntity`, `businessAddress`, `registeredAgentName`, `registeredAgentAddress`, `txCsoRegistration`, the surety bond (or surety account) details, and a form destination. Preview it anytime at `/agreement.html?preview=1` (signing disabled) — that's the version to send your attorney.
 - Changing the contract later? Bump `agreement.version` so each signed record shows which version the client saw.
-- When you invoice in QuickBooks, add a note like *"Sesión 1 de 4 — Acuerdo firmado el 7 de octubre de 2026."*
+- When you invoice in QuickBooks, add a note like *"Programa completo (4 de 4 sesiones) — Acuerdo firmado el 7 de octubre de 2026."*
 
 ---
 
@@ -162,7 +163,7 @@ What the page does, in the order the law requires:
 
 - [ ] Texas Credit Services Organization registration + bond on file with the Texas Secretary of State; number added to `txCsoRegistration`. (Paid advice about improving credit counts as a CSO under Texas law and federal CROA.)
 - [ ] Attorney has reviewed `agreement.html?preview=1` (all three documents and the cancellation forms).
-- [ ] $10,000 surety bond (or surety account) in place. Texas only allows billing before *all* services are finished if the CSO is bonded (Tex. Fin. Code §393.302) — per-session billing depends on it.
+- [ ] Ask your attorney whether you need the $10,000 surety bond. Texas requires it only to charge *before* all services are finished (Tex. Fin. Code §393.302). Billing once after the last session avoids that; the early-exit charge for delivered sessions is the open question. The agreement currently expects bond details — tell me if the attorney says to drop them.
 - [ ] Confirm with Intuit (or a processor that accepts credit-services businesses) that you can take card/ACH payments for this service. Intuit's Acceptable Use Policy lists "Credit Repair, Counseling and Protection Services" as restricted.
 - [ ] `legal.html` reviewed by an attorney.
 - [ ] Old prepaid QuickBooks payment links deactivated.

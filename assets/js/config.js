@@ -10,12 +10,12 @@ window.MCS_CONFIG = {
   phone: "(832) 808-6483",
   email: "",                            // e.g. "hola@mycrystalscore.com"
 
-  // Coaching program pricing (USD). Each session is invoiced AFTER it is delivered.
-  // The site shows the per-session price and the program total (session × sessions).
+  // Coaching program pricing (USD). ONE invoice for the whole program, sent AFTER the final session.
+  // If a program ends early, the client owes (program ÷ sessions) for each session already delivered.
   prices: {
-    session: "300",                     // individual, per session
+    program: "1200",                    // individual program total
     sessions: "4",                      // sessions in the program
-    coupleSession: ""                   // per session for couples — e.g. "450" to show a Couples card; "" hides it
+    coupleProgram: ""                   // couples program total — e.g. "1800" shows a Couples card; "" hides it
   },
 
   // Optional "Log in" button (e.g. a client portal). Empty = hidden.
@@ -42,7 +42,7 @@ window.MCS_CONFIG = {
   // Preview it anytime at /agreement.html?preview=1 (signing disabled).
   // ===================================================================
   agreement: {
-    version: "1.0 (2026-10-07)",
+    version: "1.1 (2026-10-08)",
     legalEntity: "",                    // REQUIRED — exact legal name, e.g. "My Crystal Score LLC"
     businessAddress: "",                // REQUIRED — principal place of business: street, city, TX ZIP
     registeredAgentName: "",            // REQUIRED — Texas agent for service of process
@@ -61,7 +61,7 @@ window.MCS_CONFIG = {
     },
     sessionMinutes: "60",               // approximate length of each session
     programDays: "90",                  // all services completed within this many days of signing (Texas max 180)
-    invoiceDueDays: "7"                 // invoice due this many days after each session
+    invoiceDueDays: "7"                 // invoice due this many days after it is sent (after the final session)
   },
   supabaseAgreementsTable: "mcs_agreements"
 };

@@ -45,7 +45,7 @@
   need(A.registeredAgentName, 'agreement.registeredAgentName');
   need(A.registeredAgentAddress, 'agreement.registeredAgentAddress');
   need(C.txCsoRegistration, 'txCsoRegistration');
-  need(P.session, 'prices.session');
+  need(P.program, 'prices.program');
   if ((S.type || 'bond') === 'account') {
     need(S.depository, 'agreement.surety.depository'); need(S.depositoryAddress, 'agreement.surety.depositoryAddress');
     need(S.trustee, 'agreement.surety.trustee'); need(S.accountNumber, 'agreement.surety.accountNumber');
@@ -104,15 +104,15 @@
   }
 
   /* ---------- State ---------- */
-  var couplesOn = !blank(P.coupleSession);
+  var couplesOn = !blank(P.coupleProgram);
   var nSessions = parseInt(P.sessions, 10) || 4;
   var state = { step: 1, signDate: todayCT(), acks: {} };
 
   function planInfo() {
     var plan = ($('#ag-plan') && $('#ag-plan').value) || 'individual';
     if (plan === 'pareja' && !couplesOn) plan = 'individual';
-    var price = Number(plan === 'pareja' ? P.coupleSession : P.session) || 0;
-    return { plan: plan, price: price, total: price * nSessions };
+    var total = Number(plan === 'pareja' ? P.coupleProgram : P.program) || 0;
+    return { plan: plan, total: total, perSession: Math.round(total / nSessions * 100) / 100 };
   }
 
   function data() {
@@ -144,7 +144,7 @@
       agentAddress: val(A.registeredAgentAddress, 'agreement.registeredAgentAddress'),
       cso: val(C.txCsoRegistration, 'txCsoRegistration'),
       surety: suretyHtml,
-      price: money(p.price), total: money(p.total), sessions: nSessions,
+      total: money(p.total), perSession: money(p.perSession), sessions: nSessions,
       minutes: esc(A.sessionMinutes || '60'), programDays: esc(A.programDays || '90'), dueDays: esc(A.invoiceDueDays || '7'),
       clientName: d.name ? esc(d.name) : missingMark(l === 'en' ? 'your name' : 'su nombre'),
       clientAddress: d.address ? esc(d.address) : missingMark(l === 'en' ? 'your address' : 'su dirección'),
@@ -305,8 +305,8 @@
       'Teléfono': payload.phone,
       'Dirección': payload.address,
       'Programa': payload.plan + (payload.co_client_name ? ' (co-cliente: ' + payload.co_client_name + ')' : ''),
-      'Precio por sesión': money(payload.session_price),
-      'Total': money(payload.total) + ' (' + payload.sessions + ' sesiones)',
+      'Total del programa': money(payload.total) + ' (' + payload.sessions + ' sesiones, una sola factura después de la última sesión)',
+      'Valor por sesión (solo si termina antes)': money(payload.session_price),
       'Idioma firmado': payload.lang === 'en' ? 'Inglés' : 'Español',
       'Consentimiento electrónico': stamp(payload.esign_consent_at),
       'Acuse Documento 1 (federal)': payload.federal_ack_name + ' — ' + stamp(payload.federal_ack_at),
@@ -410,7 +410,7 @@
       texas_ack_name: state.acks.texas.name, texas_ack_at: state.acks.texas.at,
       contract_signed_name: $('#ag-sign').value.trim(), contract_signed_at: signedAt,
       sign_date: state.signDate, cancel_deadline: ctx.deadlineYMD, earliest_session: addDays(ctx.deadlineYMD, 1),
-      session_price: p.price, sessions: nSessions, total: p.total,
+      session_price: p.perSession, sessions: nSessions, total: p.total,
       agreement_version: A.version || '1.0', doc_sha256: hash, doc_html: html,
       utm: utm, user_agent: navigator.userAgent, page: location.href, source: 'mycrystalscore.com'
     };

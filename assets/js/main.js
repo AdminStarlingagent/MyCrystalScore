@@ -61,7 +61,8 @@
   /* ---------- Settings from config.js ---------- */
   var digits = function (s) { return String(s || '').replace(/\D/g, '').slice(-10); };
 
-  // Pricing: per-session price × number of sessions = program total
+  // Pricing: one program total, billed after the final session.
+  // perSession = program ÷ sessions (only used if a program ends early).
   var P = C.prices || {};
   var nSessions = parseInt(P.sessions, 10) || 4;
   var money = function (v) {
@@ -69,19 +70,19 @@
     return isFinite(n) ? n.toLocaleString('en-US', { maximumFractionDigits: 2 }) : String(v);
   };
   var priceValues = {
-    session: P.session ? money(P.session) : '',
+    program: P.program ? money(P.program) : '',
     sessions: String(nSessions),
-    total: P.session ? money(Number(P.session) * nSessions) : '',
-    coupleSession: P.coupleSession ? money(P.coupleSession) : '',
-    coupleTotal: P.coupleSession ? money(Number(P.coupleSession) * nSessions) : ''
+    perSession: P.program ? money(Number(P.program) / nSessions) : '',
+    coupleProgram: P.coupleProgram ? money(P.coupleProgram) : '',
+    couplePerSession: P.coupleProgram ? money(Number(P.coupleProgram) / nSessions) : ''
   };
   document.querySelectorAll('[data-price]').forEach(function (el) {
     var v = priceValues[el.getAttribute('data-price')];
     if (v) el.textContent = v;
   });
   // Couples offer only appears when a couples price is set
-  document.querySelectorAll('[data-couples]').forEach(function (el) { el.hidden = !P.coupleSession; });
-  document.querySelectorAll('option[data-couples-option]').forEach(function (opt) { if (!P.coupleSession) opt.remove(); });
+  document.querySelectorAll('[data-couples]').forEach(function (el) { el.hidden = !P.coupleProgram; });
+  document.querySelectorAll('option[data-couples-option]').forEach(function (opt) { if (!P.coupleProgram) opt.remove(); });
 
   document.querySelectorAll('[data-portal]').forEach(function (el) {
     if (C.portalUrl) { el.href = C.portalUrl; el.hidden = false; }
